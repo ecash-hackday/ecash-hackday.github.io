@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ecash Hackday 26</title>
+  <meta name="description" content="Let’s hack electronic cash together. September 30 in Berlin.">
+  <meta name="theme-color" content="#1017FD">
+
+  <!-- Favicon (local SVG, no external request) -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ecash Hackday 26">
+  <meta property="og:title" content="ECASH HACKDAY 26">
+  <meta property="og:description" content="Let’s hack electronic cash together. September 30 in Berlin.">
+  <meta property="og:url" content="https://ecash-hackday.github.io/">
+  <meta property="og:image" content="https://ecash-hackday.github.io/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ECASH HACKDAY 26">
+  <meta name="twitter:description" content="Let’s hack electronic cash together. September 30 in Berlin.">
+  <meta name="twitter:image" content="https://ecash-hackday.github.io/og.png">
+  <style>
+    /* =====================================================================
+       ECASH HACKDAY 26 — hero landing page
+       Palette: #1017FD background, #AEFA3E text.
+       ===================================================================== */
+    @font-face {
+      font-family: 'LinealVF';
+      src: url('fonts/LinealVF.woff2') format('woff2-variations'),
+           url('fonts/LinealVF.woff') format('woff');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background-color: #1017FD;
+      color: #AEFA3E;
+      font-family: 'LinealVF', 'Lineal', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Subtle, Uniform Fine-Lined Square Grid Background (#AEFA3E) */
+    .grid-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #1017FD;
+      background-image: 
+        linear-gradient(to right, rgba(174, 250, 62, 0.18) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(174, 250, 62, 0.18) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Main Responsive Layout Wrapper — Fully Centered */
+    .hero-wrapper {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;      /* Fallback for older browsers */
+      min-height: 100dvh;     /* Dynamic viewport height: fixes mobile URL-bar shift */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(20px, 5vh, 72px) clamp(16px, 5vw, 84px);
+      z-index: 2;
+      overflow-x: hidden;
+    }
+
+    /* Centered Information Column */
+    .content-column {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: clamp(16px, 2.5vh, 24px);
+      max-width: 100%;
+      width: max-content;
+    }
+
+    .main-heading {
+      position: relative;
+      z-index: 3;
+      font-size: clamp(50px, 6.6vw, 122px);
+      font-weight: 900;
+      letter-spacing: 0.035em;
+      line-height: 1.02;
+      text-transform: uppercase;
+      color: #AEFA3E;
+      font-stretch: condensed;
+      text-align: center;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      white-space: nowrap;
+    }
+
+    .sub-text-block {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      margin-top: clamp(10px, 1.6vh, 22px);
+      margin-bottom: clamp(10px, 1.6vh, 22px);
+    }
+
+    .sub-text {
+      font-size: clamp(25.34px, 2.38vw, 34.85px);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1.35;
+      color: #AEFA3E;
+      font-stretch: condensed;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+      white-space: nowrap;
+    }
+
+    /* Register Button (Solid #AEFA3E) */
+    .register-btn {
+      position: relative;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #AEFA3E;
+      color: #1017FD;
+      font-size: clamp(15px, 1.2vw, 18px);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      padding: 8px 36px;
+      text-decoration: none;
+      border-radius: 0;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      font-stretch: condensed;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      margin-top: 4px;
+    }
+
+    .register-btn:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .register-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Wireframe Trefoil Torus Knot Backdrop (Behind All Text) */
+    /* Uses the padding-bottom ratio technique for universal browser support
+       instead of `aspect-ratio`, which fails on Safari < 15 / Chrome < 88. */
+    .knot-backdrop {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* Capped against viewport height so the square knot can never exceed the
+         screen and create a vertical scrollbar. Declarations cascade so older
+         browsers without min()/dvh still get a usable value. */
+      width: 91%;
+      width: min(91%, 82vh);
+      width: min(91%, 82dvh);
+      max-width: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .knot-backdrop::before {
+      content: '';
+      display: block;
+      padding-bottom: 100%; /* Locks a 1:1 square ratio */
+    }
+
+    #knot-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* =====================================================================
+       RESPONSIVE BREAKPOINTS
+       Heading uses min() with a vw-derived ceiling instead of a fixed px
+       floor, so the single-line title can never overflow the viewport.
+       ===================================================================== */
+
+    /* Tablet & Mobile */
+    @media (max-width: 960px) {
+      .hero-wrapper {
+        padding: 28px 20px;
+        justify-content: flex-start;
+      }
+
+      /* Header, subtext, and button left-aligned instead of centered. */
+      .content-column {
+        width: 100%;
+        max-width: 100%;
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      /* Knot becomes a normal in-flow banner above the header instead of
+         an absolutely-positioned backdrop sitting behind the text. */
+      .knot-backdrop {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: min(95%, 420px);
+      }
+
+      .main-heading {
+        font-size: min(9vw, 90px);
+        text-align: left;
+      }
+
+      .sub-text-block {
+        align-items: flex-start;
+      }
+
+      .sub-text {
+        font-size: min(3.6vw, 19px);
+        text-align: left;
+      }
+
+      .register-btn {
+        font-size: min(4vw, 17px);
+        padding: 9px 32px;
+      }
+    }
+
+    /* Small Phones */
+    @media (max-width: 430px) {
+      .hero-wrapper {
+        padding: 20px 14px;
+      }
+
+      .content-column {
+        gap: 14px;
+      }
+
+      .main-heading {
+        font-size: min(9.5vw, 56px);
+        letter-spacing: 0.02em;
+      }
+
+      .sub-text {
+        font-size: min(4.2vw, 18px);
+      }
+
+      .knot-backdrop {
+        width: min(90%, 320px);
+      }
+    }
+
+    /* Landscape Phones — compress vertical rhythm */
+    @media (max-height: 480px) and (orientation: landscape) {
+      .hero-wrapper {
+        padding: 16px 24px;
+      }
+
+      .content-column {
+        gap: 10px;
+      }
+
+      .main-heading {
+        font-size: min(7vw, 56px);
+      }
+
+      .sub-text {
+        font-size: min(3.17vw, 21.12px);
+      }
+
+      .knot-backdrop {
+        width: 62%;
+        width: min(62%, 74vh);
+        width: min(62%, 74dvh);
+      }
+    }
+
+    /* Reduce paint cost for users who prefer less visual complexity */
+    @media (prefers-reduced-motion: reduce) {
+      .register-btn {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Subtle Uniform Grid -->
+  <div class="grid-background"></div>
+
+  <!-- Centered Hero Content -->
+  <main class="hero-wrapper">
+    <section class="content-column">
+      <!-- Wireframe Trefoil Torus Knot Backdrop -->
+      <div class="knot-backdrop" id="knot-container">
+        <canvas id="knot-canvas" aria-hidden="true"></canvas>
+      </div>
+
+      <h1 class="main-heading">Ecash Hackday 26</h1>
+
+      <div class="sub-text-block">
+        <p class="sub-text">Let’s hack electronic cash together.</p>
+        <p class="sub-text">September 30 in Berlin.</p>
+      </div>
+
+      <a class="register-btn"
+         href="https://cryptpad.fr/form/#/2/form/view/wU3Xfd2i0qf1kbpbfA6zvcX+N1+rzkXYQLrp3U2VY0Y/"
+         target="_blank"
+         rel="noopener noreferrer">Register</a>
+    </section>
+  </main>
+
+  <script>
+    /* =====================================================================
+       STATIC WIREFRAME TREFOIL TORUS KNOT
+       Blue (#1017FD) opaque fill · White hairline outlines
+       Depth-sorted painter's algorithm for true 3D occlusion
+       ===================================================================== */
+    const knotContainer = document.getElementById('knot-container');
+    const knotCanvas = document.getElementById('knot-canvas');
+    const kctx = knotCanvas.getContext('2d');
+
+    const FILL_COLOR = '#1017FD';
+    const LINE_COLOR = '#FFFFFF';
+
+    // Fixed orientation matching the reference image
+    const ROT_X = 0.44;
+    const ROT_Y = -0.42;
+    const ROT_Z = 0.22;
+
+    function drawKnot() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = knotContainer.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
+
+      // Guard against zero-size layout passes (fonts still loading, hidden, etc.)
+      if (!width || !height || width < 2 || height < 2) return;
+
+      knotCanvas.width = Math.round(width * dpr);
+      knotCanvas.height = Math.round(height * dpr);
+      kctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      kctx.clearRect(0, 0, width, height);
+
+      // Mesh density scales with size: lighter on small screens, dense on large
+      const minSide = Math.min(width, height);
+      const stepsT = minSide < 260 ? 80 : (minSide < 460 ? 100 : 120);
+      const stepsP = minSide < 260 ? 14 : (minSide < 460 ? 16 : 18);
+
+      const cx = width / 2;
+      const cy = height / 2;
+
+      const minDim = Math.min(width, height);
+      const baseScale = minDim * 0.215;
+      const knotAmplitude = baseScale * 0.634;
+      const knotTubeRadius = baseScale * 0.343;
+      const focalLength = baseScale * 3.2;
+      const cameraDistance = baseScale * 4.2;
+
+      const cosX = Math.cos(ROT_X), sinX = Math.sin(ROT_X);
+      const cosY = Math.cos(ROT_Y), sinY = Math.sin(ROT_Y);
+      const cosZ = Math.cos(ROT_Z), sinZ = Math.sin(ROT_Z);
+
+      // 3D Projection Helper
+      const transformPoint = (x, y, z) => {
+        const x0 = x * cosZ - y * sinZ;
+        const y0 = x * sinZ + y * cosZ;
+        const z0 = z;
+
+        const x1 = x0 * cosY + z0 * sinY;
+        const y1 = y0;
+        const z1 = -x0 * sinY + z0 * cosY;
+
+        const x2 = x1;
+        const y2 = y1 * cosX - z1 * sinX;
+        const z2 = y1 * sinX + z1 * cosX;
+
+        const zDepth = z2 + cameraDistance;
+        const scale = focalLength / Math.max(10, zDepth);
+        return {
+          px: cx + x2 * scale,
+          py: cy + y2 * scale,
+          zDepth: z2
+        };
+      };
+
+      // Generate Trefoil Torus Knot Surface Grid
+      const knotGrid = [];
+
+      for (let i = 0; i <= stepsT; i++) {
+        const t = (i / stepsT) * Math.PI * 2;
+
+        const kx = (Math.sin(t) + 2 * Math.sin(2 * t)) * knotAmplitude;
+        const ky = (Math.cos(t) - 2 * Math.cos(2 * t)) * knotAmplitude;
+        const kz = -Math.sin(3 * t) * knotAmplitude;
+
+        const dt = 0.001;
+        const txNext = (Math.sin(t + dt) + 2 * Math.sin(2 * (t + dt))) * knotAmplitude;
+        const tyNext = (Math.cos(t + dt) - 2 * Math.cos(2 * (t + dt))) * knotAmplitude;
+        const tzNext = -Math.sin(3 * (t + dt)) * knotAmplitude;
+
+        let tx = txNext - kx, ty = tyNext - ky, tz = tzNext - kz;
+        const tLen = Math.sqrt(tx * tx + ty * ty + tz * tz) || 1;
+        tx /= tLen; ty /= tLen; tz /= tLen;
+
+        let nx = -ty, ny = tx, nz = 0;
+        const nLen = Math.sqrt(nx * nx + ny * ny + nz * nz) || 1;
+        nx /= nLen; ny /= nLen; nz /= nLen;
+
+        const bx = ty * nz - tz * ny;
+        const by = tz * nx - tx * nz;
+        const bz = tx * ny - ty * nx;
+
+        const ring = [];
+        for (let j = 0; j < stepsP; j++) {
+          const phi = (j / stepsP) * Math.PI * 2;
+          const cosP = Math.cos(phi);
+          const sinP = Math.sin(phi);
+
+          const vx = kx + knotTubeRadius * (cosP * nx + sinP * bx);
+          const vy = ky + knotTubeRadius * (cosP * ny + sinP * by);
+          const vz = kz + knotTubeRadius * (cosP * nz + sinP * bz);
+
+          ring.push(transformPoint(vx, vy, vz));
+        }
+        knotGrid.push(ring);
+      }
+
+      // Build quad list
+      const quads = [];
+      for (let i = 0; i < stepsT; i++) {
+        const ringA = knotGrid[i];
+        const ringB = knotGrid[i + 1];
+
+        for (let j = 0; j < stepsP; j++) {
+          const nextJ = (j + 1) % stepsP;
+          const p1 = ringA[j];
+          const p2 = ringB[j];
+          const p3 = ringB[nextJ];
+          const p4 = ringA[nextJ];
+
+          const avgZ = (p1.zDepth + p2.zDepth + p3.zDepth + p4.zDepth) / 4;
+          quads.push({ p1, p2, p3, p4, avgZ });
+        }
+      }
+
+      // Painter's Algorithm: far to near for correct occlusion
+      quads.sort((a, b) => b.avgZ - a.avgZ);
+
+      for (let i = 0; i < quads.length; i++) {
+        const q = quads[i];
+
+        kctx.beginPath();
+        kctx.moveTo(q.p1.px, q.p1.py);
+        kctx.lineTo(q.p2.px, q.p2.py);
+        kctx.lineTo(q.p3.px, q.p3.py);
+        kctx.lineTo(q.p4.px, q.p4.py);
+        kctx.closePath();
+
+        // 1. Opaque blue fill (with matching stroke to seal anti-aliasing seams)
+        kctx.fillStyle = FILL_COLOR;
+        kctx.strokeStyle = FILL_COLOR;
+        kctx.lineWidth = 1.2;
+        kctx.stroke();
+        kctx.fill();
+
+        // 2. Crisp white hairline wireframe outline on top
+        kctx.strokeStyle = LINE_COLOR;
+        kctx.lineWidth = 0.45;
+        kctx.stroke();
+      }
+    }
+
+    // -------------------------------------------------------------------
+    // Responsive Redraw Triggers (debounced via rAF to avoid layout thrash)
+    // -------------------------------------------------------------------
+    let redrawQueued = false;
+    function scheduleRedraw() {
+      if (redrawQueued) return;
+      redrawQueued = true;
+      requestAnimationFrame(() => {
+        redrawQueued = false;
+        drawKnot();
+      });
+    }
+
+    window.addEventListener('load', scheduleRedraw);
+    window.addEventListener('resize', scheduleRedraw);
+    window.addEventListener('orientationchange', () => {
+      // Allow the viewport metrics to settle after rotation
+      setTimeout(scheduleRedraw, 150);
+    });
+
+    // Redraw once the local variable font finishes loading (changes header width)
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(scheduleRedraw);
+    }
+
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(scheduleRedraw);
+      ro.observe(knotContainer);
+    }
+
+    scheduleRedraw();
+  </script>
+
+</body>
+</html>
